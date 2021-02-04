@@ -1,0 +1,7 @@
+<styleSelector (styleEvent)="styleEventHandler($event)"></styleSelector>
+<div [ngClass] = "{
+    'defaultStyle':style == 0,
+    'customStyle':style == 1
+    }">
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,35 @@
+<!-- Creamos el formulario de entradas al blog en nuestro template -->
+<div>
+    <h2>Write something!</h2>
+    <form [formGroup]="blogForm">
+        <div>
+            <label>Title:</label><br/>
+            <input #title type="text" placeholder="Enter the title" formControlName="title" [ngClass]="{
+                'invalidInput': blogForm.controls.title.invalid && blogForm.controls.title.touched,
+                'validInput': blogForm.controls.title.valid && blogForm.controls.title.dirty
+            }">
+        </div>
+        <div>
+            <label>Content:</label><br/>
+            <input #content type="text" placeholder="Enter the content" formControlName="content" [ngClass]="{
+                'invalidInput': blogForm.controls.content.invalid && blogForm.controls.content.touched,
+                'validInput': blogForm.controls.content.valid && blogForm.controls.content.dirty
+            }">
+        </div>
+        <div>
+            <label>Creation Date:</label><br />
+            <input #creationDate type="text" placeholder="Enter a date"  formControlName="creationDate" [ngClass]="{
+                'invalidInput': blogForm.controls.creationDate.invalid && blogForm.controls.creationDate.touched,
+                'validInput': blogForm.controls.creationDate.valid && blogForm.controls.creationDate.dirty
+            }">
+        </div>
+        <div>
+            <input type="button" formControlName="createInputBtn" (click)="blogForm.controls.title.valid && blogForm.controls.content.valid && blogForm.controls.creationDate.valid && createInput(title.value, content.value, creationDate.value)">
+        </div>
+    </form>
+</div>
+<div id="messageBox">
+    <div *ngIf="blogForm.controls.title.invalid && blogForm.controls.title.touched">Title is required</div>
+    <div *ngIf="blogForm.controls.content.invalid && blogForm.controls.content.touched">Content is required</div>
+    <div *ngIf="blogForm.controls.creationDate.invalid && blogForm.controls.creationDate.touched">Creation Date is required</div>
+</div>
